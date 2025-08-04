@@ -1,0 +1,8 @@
+<p>This rule makes it mandatory to use the Account service APIs available to perform operations on Account records instead of direct access to Account table.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>bal(AC.AccountOpening.Account.OpenActualBal) = 1000
+openactbal = bal(AC.AccountOpening.Account.OpenActualBal)</pre>
+<h2>Compliant Solution</h2>
+<p>Use the respective <b>API</b>s to get the balance details for <b>ACCOUNT</b>.</p>
+<pre>CALL Accountmulti-threaded job.setOpenActualBalance(ACCOUNT.NO, YBALANCE, response)
+CALL Accountmulti-threaded job.getOpenActualBalance(ACCOUNT.NO, YBALANCE, response)</pre>

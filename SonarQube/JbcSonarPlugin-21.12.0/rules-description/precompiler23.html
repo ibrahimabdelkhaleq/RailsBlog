@@ -1,0 +1,10 @@
+<p>This rule provides an info to replace TXT with overrides as TXT is not supported.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CALL TXT('Hello')</pre>
+<h2>Compliant Solution</h2>
+<p>Consider the usage of <b>STORE.OVERRIDE</b> instead of <b>TXT</b>. Assign the overrideId to the common variable <b>TEXT</b> before calling <b>STORE.OVERRIDE</b>. </p>
+<pre>TEXT = 'Hello'
+CURR.NO = 0 
+CALL STORE.OVERRIDE (CURR.NO)</pre>
+<h2>Exceptions</h2>
+<p>TXT holds good only for command line processing.</p>

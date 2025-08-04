@@ -1,0 +1,7 @@
+<p>This rule provides the name of API that can be used to read ECB record for ACCOUNT application.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>RE.ConBalanceUpdates.EbContractBalances.Read(RecId, Error)
+CALL F.READ('F.EB.CONTRACT.BALANCES',RecId,Rec,'',Error)</pre>
+<h2>Compliant Solution</h2>
+<p>Use respective <b>API</b> to read contract balances record for <b>ACCOUNT</b>.</p>
+<pre>AC.API.EbReadContractBalances(AcctNo, EbContractBalRec, Yerr, RecordLock)</pre>

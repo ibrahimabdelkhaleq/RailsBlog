@@ -1,0 +1,6 @@
+<p>This rule makes it mandatory to replace all the API/Command calls with component methods.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CALL F.READ('F.STANDARD.SELECTION',id,rec,'',error)</pre>
+<h2>Compliant Solution</h2>
+<p>Replace the direct call statements with component methods.</p>
+<pre>EB.SystemTables.StandardSelection.Read(RecId, Error)</pre>

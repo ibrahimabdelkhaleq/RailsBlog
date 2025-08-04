@@ -1,0 +1,6 @@
+<p>This rule makes it mandatory to replace SEQ with SEQX as SEQX serves as a wrapper to handle various encodings.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>GETNO = SEQ(A)</pre>
+<h2>Compliant Solution</h2>
+<p><b>SEQX</b> should be used instead of <b>SEQ</b>.</p>
+<pre>GETNO = SEQX(A)</pre>

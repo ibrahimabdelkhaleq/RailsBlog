@@ -1,0 +1,9 @@
+<p>This rule prevents the usage of GOTO as it is not recommended.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>GOTO LABEL1
+LABEL1:</pre>
+<h2>Compliant Solution</h2>
+<p><b>GOSUB</b> can be used instead of <b>GOTO</b>.</p>
+<pre>GOSUB LABEL1
+LABEL1:
+RETURN</pre>

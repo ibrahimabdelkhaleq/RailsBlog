@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.temenos.tafj</groupId>
+		<artifactId>TAFJ</artifactId>
+		<version>21.12.0</version>
+		<relativePath>../TAFJBuild/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>JbcSonarPlugin</artifactId>
+	<packaging>sonar-plugin</packaging>
+
+	<developers>
+		<developer>
+			<name>Dev Team</name>
+			<organization>TEMENOS SA</organization>
+			<organizationUrl>https://www.temenos.com</organizationUrl>
+		</developer>
+	</developers>
+
+	<name>Jbc Plugin for SonarQube</name>
+	<description>Jbc Plugin for SonarQube</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.apiVersion>7.8</sonar.apiVersion>
+		<sonar.version>7.8</sonar.version>
+		<sonar-orchestrator.version>3.14.0.887</sonar-orchestrator.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<logback.version>1.0.13</logback.version>
+		<log4j2.version>2.8.2</log4j2.version>
+		<jdk.min.version>1.8</jdk.min.version>
+	</properties>
+
+
+	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>${basedir}/../JBCPrecompiler/JBC/JBC_Precompiler/sonarqube</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}/src/main/resources/META-INF/lib</directory>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
+				<artifactId>sonar-packaging-maven-plugin</artifactId>
+				<version>1.18.0.372</version>
+				<extensions>true</extensions>
+				<configuration>
+					<pluginClass>com.temenos.sonar.plugins.jbc.JbcPlugin</pluginClass>
+					<skipDependenciesPackaging>true</skipDependenciesPackaging>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>${jdk.min.version}</source>
+					<target>${jdk.min.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- UTF-8 bundles are not supported by Java, so they must be converted 
+					during build -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>native2ascii-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>native2ascii</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>deployCodeCoverage</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.temenos.codeCoverage</groupId>
+									<artifactId>CodeCoverageReceiver</artifactId>
+									<type>zip</type>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${tafj.home.unittest}</outputDirectory>
+						</configuration>
+					</execution>
+					<!-- package strict minimal dependencies -->
+					<execution>
+						<id>package</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.temenos.technology</groupId>
+									<artifactId>TemnSecurity</artifactId>
+									<destFileName>TemnSecurity.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJCache</artifactId>
+									<destFileName>TAFJCache.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJCommon</artifactId>
+									<destFileName>TAFJCommon.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJHealthCheck</artifactId>
+									<destFileName>TAFJHealthCheck.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJAPICommon</artifactId>
+									<destFileName>TAFJAPICommon.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJCompiler</artifactId>
+									<destFileName>TAFJCompiler.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJCore</artifactId>
+									<destFileName>TAFJCore.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJClient</artifactId>
+									<destFileName>TAFJClient.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJLogging</artifactId>
+									<destFileName>TAFJLogging.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJLocking</artifactId>
+									<destFileName>TAFJLocking.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJConfiguration</artifactId>
+									<destFileName>TAFJConfiguration.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.codeCoverage</groupId>
+									<artifactId>CodeCoverageReceiver</artifactId>
+									<destFileName>CodeCoverageReceiver.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>jWeb</groupId>
+									<artifactId>jWeb</artifactId>
+									<destFileName>jWeb.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJBASIC</artifactId>
+									<destFileName>TAFJBASIC.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>tComponentFramework</artifactId>
+									<destFileName>tComponentFramework.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.json</groupId>
+									<artifactId>json</artifactId>
+									<destFileName>json.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>JBC_Precompiler</artifactId>
+									<destFileName>JBC_Precompiler.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>antlr</groupId>
+									<artifactId>antlr</artifactId>
+									<destFileName>antlr.jar</destFileName>
+								</artifactItem>
+
+								<artifactItem>
+									<groupId>com.ibm.icu</groupId>
+									<artifactId>icu4j</artifactId>
+									<destFileName>icu4j.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.fusesource.jansi</groupId>
+									<artifactId>jansi</artifactId>
+									<classifier>TEMN</classifier>
+									<destFileName>jansi.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>javax.ws.rs</groupId>
+									<artifactId>javax.ws.rs-api</artifactId>
+									<destFileName>javax.ws.rs-api.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.temenos.tafj</groupId>
+									<artifactId>TAFJJEE_EJBClient</artifactId>
+									<destFileName>TAFJJEE_EJBClient.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${basedir}/src/main/resources/META-INF/lib</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- <plugin> <artifactId>maven-antrun-plugin</artifactId> <executions> 
+				<execution> <id>copy-spi</id> <phase>package</phase> <configuration> <tasks> 
+				<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="maven.plugin.classpath" 
+				/> <copy todir="${project.build.directory}/META-INF/services"> <fileset dir="${basedir}/src/main/resources/META-INF/services"> 
+				<include name="*.xml" /> </fileset> </copy> </tasks> </configuration> <goals> 
+				<goal>run</goal> </goals> </execution> </executions> </plugin> -->
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- -->
+		<dependency>
+			<groupId>org.sonarsource.sonarqube</groupId>
+			<artifactId>sonar-plugin-api</artifactId>
+			<version>${sonar.apiVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.sonarsource.orchestrator</groupId>
+			<artifactId>sonar-orchestrator</artifactId>
+			<version>${sonar-orchestrator.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.sonarsource.sonarqube</groupId>
+			<artifactId>sonar-ws</artifactId>
+			<version>${sonar.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- needed to do not override sonarqube dependency on this specific logback 
+			release -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>antlr</groupId>
+			<artifactId>antlr</artifactId>
+		</dependency>
+
+
+		<!-- unit tests -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.sonarsource.sonarqube</groupId>
+			<artifactId>sonar-testing-harness</artifactId>
+			<version>${sonar.apiVersion}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit-ext</groupId>
+			<artifactId>junit-ext-1.0-junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- sonarqube plugin constraint -->
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.0</version>
+			<scope>test</scope>
+		</dependency>
+
+
+
+		<!-- The dependency on TAFJ is only and only for testing purpose. Because 
+			the LGP licence of Sonar, we cannot use Direct invokation call -->
+		<dependency>
+			<groupId>com.temenos.tafj</groupId>
+			<artifactId>TAFJCompiler</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.temenos.codeCoverage</groupId>
+			<artifactId>CodeCoverageReceiver</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.temenos.tafj</groupId>
+			<artifactId>TAFJBASIC</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.temenos.tafj</groupId>
+			<artifactId>JBC_Precompiler</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.temenos.tafj</groupId>
+			<artifactId>TAFJCore</artifactId>
+			<type>test-jar</type>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+
+</project>

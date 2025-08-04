@@ -1,0 +1,10 @@
+<p>This rule is used to make sure that TEXT is set with proper error format before making a call to STORE.OVERRIDE.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>TEXT = 'AA.CUSTOMER.MISMATCH'
+CURR.NO = 0 
+CALL STORE.OVERRIDE (CURR.NO)</pre>
+<h2>Compliant Solution</h2>
+<p>Set <b>TEXT</b> with pattern (<b>Product-OverrideText</b>)</p>
+<pre>TEXT = 'AA-CUSTOMER.MISMATCH'
+CURR.NO = 0 
+CALL STORE.OVERRIDE (CURR.NO)</pre>

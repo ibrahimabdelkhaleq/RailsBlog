@@ -1,0 +1,7 @@
+<p>This rule checks for instances where a sequential file processing is done.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>OPENSEQ FnAchOutFilePath,OutFileName TO FAchOutFilePath ELSE
+READSEQ Record FROM FAchOutFilePath THEN
+WRITESEQ RecordLine ON FAchOutFilePath THEN</pre>
+<h2>Exceptions</h2>
+<p>Use sequential file only when there is a necessity to process a file line by line.</p>

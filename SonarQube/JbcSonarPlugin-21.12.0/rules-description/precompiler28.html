@@ -1,0 +1,8 @@
+<p>This rule prohibits the usage of TRANSTART, TRANSABORT and TRANSEND as these are handled by transaction management.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>TRANSTART 'SAVEPOINT' ELSE
+TRANSEND ELSE
+TRANSABORT ELSE</pre>
+<h2>Compliant Solution</h2>
+<p>Do not use <b>TRANSTART</b>, <b>TRANSEND</b> and <b>TRANSABORT</b>, as it is handled by T24 transaction management.</p>
+<pre></pre>

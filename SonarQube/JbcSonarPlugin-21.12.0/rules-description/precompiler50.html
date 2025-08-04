@@ -1,0 +1,8 @@
+<p>This rule provides an info to replace all the EB.READLIST calls with DAS.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CALL EB.READLIST(SEL.CMD,LIST.KEY1,'',NO.SEL,'')
+EB.DataAccess.Readlist(SelectStatement, KeyList, ListName, Selected, SystemReturnCode)</pre>
+<h2>Compliant Solution</h2>
+<p>Consider using <b>DAS</b> instead of <b>EB.READLIST</b>.</p>
+<pre>CALL DAS(TableName, TheList, TheArgs, TableSuffix)
+EB.DataAccess.Das(TableName, TheList, TheArgs, TableSuffix)</pre>

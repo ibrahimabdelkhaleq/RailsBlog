@@ -1,0 +1,8 @@
+<p>This rule is used to make sure that ETEXT is set with proper error format before making a call to STORE.END.ERROR.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>ETEXT ='EB.RTN.DUP'
+CALL STORE.END.ERROR</pre>
+<h2>Compliant Solution</h2>
+<p>Set <b>ETEXT</b> with pattern (<b>Product-ErrorText</b>)</p>
+<pre>ETEXT = 'EB-TEST.CORRECT.FORMAT'
+CALL STORE.END.ERROR</pre>

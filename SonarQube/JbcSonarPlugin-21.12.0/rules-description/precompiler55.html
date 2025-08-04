@@ -1,0 +1,8 @@
+<p>This rule restricts the direct read of Standard Selection record as it will cause performance issue. Instead specific API can be used to read the SS record.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>SSRec = EB.SystemTables.StandardSelection.Read(RecId, Error)
+CALL F.READ('F.STANDARD.SELECTION',id,rec,' ',error)</pre>
+<h2>Compliant Solution</h2>
+<p>The following <b>API</b> can be used to get the details of Standard Selection instead of direct read.</p>
+<pre>CALL GET.STANDARD.SELECTION.DETS('SECTOR',SSRec)
+EB.API.GetStandardSelectionDets('SECTOR', SsRec)</pre>

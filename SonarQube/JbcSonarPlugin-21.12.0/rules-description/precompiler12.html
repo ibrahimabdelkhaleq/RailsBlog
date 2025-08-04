@@ -1,0 +1,6 @@
+<p>This rule makes it mandatory to replace CHAR with CHARX as CHARX serves as a wrapper to handle various encodings.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CHAR.RET = CHAR(10)</pre>
+<h2>Compliant Solution</h2>
+<p><b>CHARX</b> should be used instead of <b>CHAR</b>.</p>
+<pre>CHAR.RET = CHARX(10)</pre>

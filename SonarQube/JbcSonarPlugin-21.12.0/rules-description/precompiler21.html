@@ -1,0 +1,10 @@
+<p>This rule makes it mandatory to open all the necessary files in the .LOAD routine of a multi-threaded job instead of record routine.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>SUBROUTINE TEST
+EB.DataAccess.Opf(FN.OFS.SOURCE.VAL, F.OFS.SOURCE.VAL)
+CALL OPF(FN.OFS.SOURCE.VAL, F.OFS.SOURCE.VAL)</pre>
+<h2>Compliant Solution</h2>
+<p>All necessary files should only be opened in the <b>'.LOAD'</b> of a multi-threaded job.</p>
+<pre>SUBROUTINE TEST.LOAD
+EB.DataAccess.Opf(FN.OFS.SOURCE.VAL, F.OFS.SOURCE.VAL)
+CALL OPF(FN.OFS.SOURCE.VAL, F.OFS.SOURCE.VAL)</pre>

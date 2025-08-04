@@ -1,0 +1,7 @@
+<p>This rule is used to indicate that MATCHES works only with VM markers.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>IF 1 MATCHES 1:@FM:2 THEN
+IF 1 MATCHES 1:@SM:2 THEN</pre>
+<h2>Compliant Solution</h2>
+<p><b>MATCHES</b> works only with <b>@VM</b>.</p>
+<pre>IF 1 MATCHES 1:@VM:2 THEN</pre>

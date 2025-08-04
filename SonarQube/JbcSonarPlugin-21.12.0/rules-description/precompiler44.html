@@ -1,0 +1,8 @@
+<p>This rule identifies the list of commands which are not supported in TAFJ.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>EXECUTE 'SELECT F.ACCOUNT$HIS'
+EXECUTE 'LIST-ITEM FBNK.CUSTOMER'</pre>
+<h2>Compliant Solution</h2>
+<p>Avoid using the following list of commands as they are not supported in <b>TAFJ</b>.
+ESEARCH, SEARCH, LIST, LIST-ITEM, REFORMAT, SREFORMAT, SDUMP, TLOAD, SORT, SORTITEM, SORTLABEL, STAT, SUM, TDUMP, TLOAD.</p>
+<pre></pre>

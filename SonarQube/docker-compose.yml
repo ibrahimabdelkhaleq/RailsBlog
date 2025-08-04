@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  sonarqube:
+    build: .
+    container_name: sonarqube-jbc
+    ports:
+      - "9000:9000"
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+      - SONAR_WEB_JAVAOPTS=-Dtemn.tafj.runtime.enable.jbc.meter=false -Dlog4j2.statusLogger.enabled=false -Dlog4j2.disable.jmx=true -Dlog4j2.configurationFile=/opt/sonarqube/conf/log4j2.xml -Djava.ext.dirs=/opt/sonarqube/lib -Xmx512m -Xms128m
+      - SONAR_CE_JAVAOPTS=-Dtemn.tafj.runtime.enable.jbc.meter=false -Dlog4j2.statusLogger.enabled=false -Dlog4j2.disable.jmx=true -Dlog4j2.configurationFile=/opt/sonarqube/conf/log4j2.xml -Djava.ext.dirs=/opt/sonarqube/lib -Xmx512m -Xms128m
+      - SONAR_SEARCH_JAVAOPTS=-Xmx512m -Xms512m
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/api/system/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:

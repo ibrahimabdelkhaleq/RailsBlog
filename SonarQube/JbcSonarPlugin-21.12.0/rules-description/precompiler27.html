@@ -1,0 +1,8 @@
+<p>This rule makes it mandatory to use session number instead of terminal number.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>EB.SystemTables.setTno('123')
+R.BATCH<18> = TNO</pre>
+<h2>Compliant Solution</h2>
+<p><b>C$SESSION.NO</b> should be used in place of <b>TNO</b>.</p>
+<pre>R.BATCH<18> = C$T24.SESSION.NO
+R.BATCH<18> = EB.SystemTables.getCTTwoFouSessionNo()</pre>

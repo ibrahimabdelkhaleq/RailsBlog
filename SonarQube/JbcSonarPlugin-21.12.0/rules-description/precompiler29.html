@@ -1,0 +1,7 @@
+<p>This rule prohibits the usage of sensitive properties like CACHE.OFF, FWC and methods like CLEAR.CACHE,JOURNAL.UPDATE etc.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>FWT = ' '
+CALL CLEAR.CACHE
+CALL JOURNAL.UPDATE('')</pre>
+<h2>Exceptions</h2>
+<p>Avoid usage of sensitive properties/methods.</p>

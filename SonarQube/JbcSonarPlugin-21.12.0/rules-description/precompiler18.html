@@ -1,0 +1,8 @@
+<p>This rule checks for instances where DBR can be replaced by F.READ.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CALL DBR('ACCOUNT':FM:AC.MASTER.ACCOUNT,ACC.NO,MAST.ACC.NO)
+EB.DataAccess.Dbr('ACCOUNT':FM:AC.MASTER.ACCOUNT,ACC.NO,MAST.ACC.NO)</pre>
+<h2>Compliant Solution</h2>
+<p>Consider reading the full record using <b>F.READ</b> instead of <b>DBR</b>.</p>
+<pre>CALL F.READ(FN.ACCOUNT, AccId, Rec, F.ACCOUNT, Er)
+EB.DataAccess.FRead(FN.ACCOUNT, AccId, Rec, F.ACCOUNT, Er)</pre>

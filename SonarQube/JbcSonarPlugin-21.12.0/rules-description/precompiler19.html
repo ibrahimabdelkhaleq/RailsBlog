@@ -1,0 +1,8 @@
+<p>This rule checks for instances where CACHE.DBR can be replaced by CACHE.READ.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CALL CACHE.DBR('ACCOUNT',AC.CURRENCY,ACCOUNT,ACCOUNT.CCY)
+EB.DataAccess.CacheDbr('ACCOUNT',AC.CURRENCY,ACCOUNT,ACCOUNT.CCY)</pre>
+<h2>Compliant Solution</h2>
+<p><b>CACHE.READ</b> should be used instead of <b>CACHE.DBR</b>.</p>
+<pre>CALL CACHE.READ('F.ACCOUNT', AccId, Record, Er)
+EB.DataAccess.CacheRead('F.ACCOUNT', AccId, Record, Er)</pre>

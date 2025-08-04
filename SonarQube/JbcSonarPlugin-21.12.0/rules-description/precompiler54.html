@@ -1,0 +1,8 @@
+<p>This rule restricts the usage of OfsGlobusManager.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>EB.Interface.OfsGlobusManager(KOfsSource, OfsMessage)
+CALL OFS.GLOBUS.MANAGER(KOfsSource, OfsMessage)</pre>
+<h2>Compliant Solution</h2>
+<p>OfsCallBulkManager should be used instead of OfsGlobusManager.</p>
+<pre>EB.Interface.OfsCallBulkManager(Options, Therequest, Theresponse, Txncommitted)
+CALL OFS.CALL.BULK.MANAGER(Options, Therequest, Theresponse, Txncommitted)</pre>

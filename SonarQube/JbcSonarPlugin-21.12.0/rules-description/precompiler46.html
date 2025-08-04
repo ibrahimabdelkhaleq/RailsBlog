@@ -1,0 +1,7 @@
+<p>This rule provides the name of API that can be used to read record from CURRENCY table.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>ST.CurrencyConfig.Currency.Read(RecId, Error)
+CALL F.READ('FBNK.CURRENCY',RecId,Rec,'',Error)</pre>
+<h2>Compliant Solution</h2>
+<p>Use <b>API</b> to get the currency record instead of direct read.</p>
+<pre>ST.CurrencyConfig.GetCurrencyRecord(CcyCompMne, RatesId, RatesRecord, ErrMsg)</pre>

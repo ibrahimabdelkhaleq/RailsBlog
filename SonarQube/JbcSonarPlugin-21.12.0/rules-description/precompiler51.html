@@ -1,0 +1,8 @@
+<p>This rule makes it mandatory to use the Customer service APIs available to perform operations on Customer records instead of direct access to Customer table.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CALL OPF('F.CUSTOMER','')
+ST.Customer.Customer.Read(RecId, Error)</pre>
+<h2>Compliant Solution</h2>
+<p>Use Customer service <b>API</b>s to get the customer details.</p>
+<pre>ST.Customermulti-threaded job.getRecord(CusId,CustomerRec) ;*Getting the customer Record
+CALL Customermulti-threaded job.getLanguage(customerKey, customerLanguage)</pre>

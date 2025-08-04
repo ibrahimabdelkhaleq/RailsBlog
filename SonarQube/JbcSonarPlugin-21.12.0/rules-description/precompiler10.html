@@ -1,0 +1,6 @@
+<p>This rule provides an info to use CHANGE instead of CONVERT if large arrays are used.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CONVERT @FM TO '' IN givenarray</pre>
+<h2>Compliant Solution</h2>
+<p>On large data array, consider using <b>CHANGE</b> instead of <b>CONVERT</b> for better performance.</p>
+<pre>CHANGE @FM TO '' IN givenarray</pre>

@@ -1,0 +1,8 @@
+<p>This rule provides an info to replace all CALL @ statements with the component method EB.SystemTables.CallAPI().</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CALL @TESTRTN</pre>
+<h2>Compliant Solution</h2>
+<p>Use EB.SystemTables.CallAPI instead of direct @call.</p>
+<pre>Arguments = ''
+Api = 'TESTRTN'
+EB.SystemTables.CallApi(Arguments, Api)</pre>

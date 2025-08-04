@@ -1,0 +1,9 @@
+<p>This rule restricts DCOUNT on FOR loop as the performance gets affected when DCOUNT is used on each iteration.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>FOR I = 1 TO DCOUNT(TestVar,@FM)
+NEXT I</pre>
+<h2>Compliant Solution</h2>
+<p>Use a separate variable to get the value of <b>DCOUNT</b> and then use the same variable in <b>FOR</b> loop.</p>
+<pre>CNT = DCOUNT(TestVar,@FM)
+FOR I = 1 TO CNT
+NEXT I</pre>

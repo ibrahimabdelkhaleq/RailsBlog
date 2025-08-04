@@ -1,0 +1,11 @@
+<p>This rule states that there should be no codes in the same line after THEN/ELSE statements.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>IF TEST.VAR THEN X = 6 ELSE X = 7
+IF TEST.VAR ELSE preserveOption = ''</pre>
+<h2>Compliant Solution</h2>
+<p>Code should be written in separate lines after <b>THEN</b> and <b>ELSE</b> statements.</p>
+<pre>IF TEST.VAR THEN 
+X = 6
+END ELSE 
+X = 7
+END</pre>

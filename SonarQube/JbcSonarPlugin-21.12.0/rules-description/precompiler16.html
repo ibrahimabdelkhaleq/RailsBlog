@@ -1,0 +1,8 @@
+<p>This rule restricts the usage of Input/Output operations in .FILTER routine of a multi-threaded job.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>SUBROUTINE TEST.FILTER
+ST.Customer.Customer.CacheRead(RecId, Error)</pre>
+<h2>Compliant Solution</h2>
+<p>All I/O operations should be done only in record routine of a multi threaded job.</p>
+<pre>SUBROUTINE TEST
+ST.Customer.Customer.CacheRead(RecId, Error)</pre>

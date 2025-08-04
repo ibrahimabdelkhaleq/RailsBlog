@@ -1,0 +1,7 @@
+<p>This rule restricts the usage of IDESC as it is not supported in TAFJ.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>CALL IDESC(FILE, ID, RECORD, IDESC, RESULT)
+EB.API.Idesc(File, Id, Record, Idesc, Result)                          </pre>
+<h2>Compliant Solution</h2>
+<p><b>IDESC</b> is not supported in TAFJ. Alternatively, handle the required functionality, by attaching a conversion routine to the field, in enquiry. </p>
+<pre></pre>

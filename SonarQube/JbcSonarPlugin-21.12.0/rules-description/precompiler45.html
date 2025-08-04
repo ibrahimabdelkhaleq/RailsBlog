@@ -1,0 +1,7 @@
+<p>This rule provides the name of API that can be used to read the history record of CURRENCY table.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>ST.CurrencyConfig.Currency.ReadHis(RecId, Error)
+CALL F.READ('FBNK.CURRENCY$HIS',RecId,Rec,'',Error)</pre>
+<h2>Compliant Solution</h2>
+<p>Use <b>API</b> to get the history file instead of direct read on history file.</p>
+<pre>ST.CurrencyConfig.GetCcyHistory(HisDate, Yccy, CcyDateRec, ReturnCode)</pre>

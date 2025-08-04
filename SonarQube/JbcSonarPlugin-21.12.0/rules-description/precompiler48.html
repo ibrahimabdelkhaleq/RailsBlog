@@ -1,0 +1,7 @@
+<p>This rule provides the name of API that can be used to write ECB record for ACCOUNT application.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>RE.ConBalanceUpdates.EbContractBalances.Write(RecId, Error)
+CALL F.WRITE('F.EB.CONTRACT.BALANCES',RecId,Rec,'',Error)</pre>
+<h2>Compliant Solution</h2>
+<p>Use respective <b>API</b> to write contract balances record for <b>ACCOUNT</b>.</p>
+<pre>AC.API.EbWriteContractBalances(AcctNo, EbContractBalRec)</pre>

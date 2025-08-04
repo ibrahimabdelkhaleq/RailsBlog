@@ -1,0 +1,6 @@
+<p>This rule makes it mandatory to include component methods instead of using insert files. </p>
+<h2>Noncompliant Code Example</h2>
+<pre>$INSERT I_F.EB.RELEASE.ESON.DS.IF</pre>
+<h2>Compliant Solution</h2>
+<p>Replace <b>$INSERT</b> with <b>$USING</b> componentName.</p>
+<pre>$USING EB.Updates</pre>

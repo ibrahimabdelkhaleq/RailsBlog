@@ -1,0 +1,8 @@
+<p>This rule provides the name of available SMS API's that can be used to get the details of SMS profile and role information.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>EB.Security.UserRoles.Read(RecId, Error)
+EB.DataAccess.Opf('F.EB.USER.ROLES','')</pre>
+<h2>Compliant Solution</h2>
+<p>Use respective <b>API</b>s instead of direct read on the table.</p>
+<pre>EB.Sms.getRole(userId, companyId, roleId)
+EB.Sms.getSmsProfile(roleId, smsProfile)</pre>

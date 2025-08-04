@@ -1,0 +1,9 @@
+<p>This rule is used to indicate that BATCH.BUILD.LIST call must be made in SELECT routine of a multi-threaded job atleast once.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>SUBROUTINE TEST.SELECT
+RETURN</pre>
+<h2>Compliant Solution</h2>
+<p>Call to <b>BATCH.BUILD.LIST</b> must be made only in the <b>'.SELECT'</b> routine of a multi-threaded job.</p>
+<pre>SUBROUTINE TEST.SELECT
+EB.multi-threaded job.BatchBuildList(ListParameters, IdList)
+CALL BATCH.BUILD.LIST(ListParameters, IdList)</pre>

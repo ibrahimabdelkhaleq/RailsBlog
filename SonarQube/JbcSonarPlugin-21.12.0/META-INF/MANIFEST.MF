@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Plugin-Description: Jbc Plugin for SonarQube
+Plugin-BuildDate: 2021-04-26T17:38:15+0000
+Plugin-Display-Version: 21.12.0
+Archiver-Version: Plexus Archiver
+SonarLint-Supported: false
+Built-By: utp
+Plugin-Homepage: http://JbcSonarPlugin
+Plugin-License: 
+Plugin-Version: 21.12.0
+Sonar-Version: 7.8
+Plugin-Developers: Dev Team
+Plugin-ChildFirstClassLoader: false
+Plugin-Key: JbcSonarPlugin
+Plugin-Class: com.temenos.sonar.plugins.jbc.JbcPlugin
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_231
+Plugin-Name: Jbc Plugin for SonarQube
+
